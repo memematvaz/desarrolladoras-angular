@@ -26,7 +26,12 @@
             matInput placeholder="Nombre"
             minlength="3"
             required>
-           
+            <!-- <mat-error *ngIf="handleError('nombre', 'minlength')">
+                Debe escribir al menos <strong>3 caracteres</strong>
+              </mat-error>
+              <mat-error *ngIf="handleError('nombre', 'required')">
+                Debe poner un <strong>nombre</strong>
+              </mat-error> -->
           </mat-form-field>
 
         <mat-form-field class="field">

@@ -57,3 +57,4 @@ export class TemplateFormsComponent implements OnInit {
     this.usersList.splice( deletePosition , 1 )
   }
 }
+

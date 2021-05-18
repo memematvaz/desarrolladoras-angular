@@ -1,0 +1,100 @@
+<mat-card class="card">
+    <h2>Usuario Actual</h2>
+    <p>{{ user.name }} {{ user.surname }}</p>
+</mat-card>
+
+<mat-card class="card">
+    <form (submit)="registerUser()">
+        <h2>Formulario del usuario</h2>
+
+        <mat-form-field>
+            <mat-label>Nombre</mat-label>
+            <input 
+            type="text"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]=" user.name "
+            matInput placeholder="Nombre"
+            minlength="3"
+            required>
+           
+          </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Apellido</mat-label>
+            <input 
+            type="text"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]=" user.surname "
+            matInput placeholder="Apellido"
+            minlength="3"
+            required>
+        </mat-form-field>
+       
+        <mat-form-field>
+            <mat-label>Edad</mat-label>
+            <input 
+            type="number"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]=" user.age "
+            matInput placeholder="Edad">
+        </mat-form-field>
+       
+        <mat-form-field>
+            <mat-label>DNI</mat-label>
+            <input 
+            type="text"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]=" user.dni "
+            matInput placeholder="DNI">
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Fecha de nacimiento</mat-label>
+            <input 
+            type="date"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]=" user.birthday "
+            matInput placeholder="dd/mm/aaaa">
+        </mat-form-field>
+    
+        <mat-form-field>
+            <mat-label>Color</mat-label>
+            <input 
+            type="text"
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="user.color "
+            matInput placeholder="Color"
+            minlength="3"
+            required>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Género</mat-label>
+            <input 
+            [ngModelOptions]="{standalone: true}"
+            [(ngModel)]="user.gender "
+            matInput placeholder="Género">
+        </mat-form-field>
+         <button mat-flat-button color="primary" type="submit">Registrar</button>
+    </form>
+</mat-card>
+
+
+<mat-card class="card">
+    <h2>Lista de usuarios</h2>
+    <ul>
+        <li *ngFor=" let user of usersList; let i = index ">
+            <strong>{{ i + 1 }}</strong>
+            {{ user.name }}
+            {{ user.surname }}
+            {{ user.age }}
+            {{ user.dni }}
+            {{ user.birthday }}
+            {{ user.color }}
+            {{ user.gender }}
+
+            <button (click)="edit( i )">Actualizar</button>
+            <button (click)="delete( i )">Eliminar</button>
+        </li>
+    </ul>
+</mat-card>

@@ -1,13 +1,23 @@
 <mat-card class="card">
-    <h2>Usuario Actual</h2>
-    <p>{{ user.name }} {{ user.surname }}</p>
+    <mat-toolbar color="basic">
+        <h2>Usuario actual</h2>
+    </mat-toolbar>
+    <div class="user-list">
+        <h3 class="text"> {{ user.name }} {{ user.surname }}</h3>
+        <p class="text"> {{ user.age }}</p>
+        <p class="text">{{ user.dni }}</p>
+        <p class="text">{{ user.birthday }}</p>
+        <p class="text">{{ user.color }}</p>
+        <p class="text">{{ user.gender }}</p> 
+    </div>
 </mat-card>
 
 <mat-card class="card">
-    <form (submit)="registerUser()">
-        <h2>Formulario del usuario</h2>
-
-        <mat-form-field>
+    <form (submit)="registerUser()" flex>
+        <mat-toolbar color="basic">
+            <h2>Formulario del usuario</h2>
+        </mat-toolbar>
+        <mat-form-field class="field" >
             <mat-label>Nombre</mat-label>
             <input 
             type="text"
@@ -19,7 +29,7 @@
            
           </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="field">
             <mat-label>Apellido</mat-label>
             <input 
             type="text"
@@ -30,35 +40,38 @@
             required>
         </mat-form-field>
        
-        <mat-form-field>
+        <mat-form-field class="field">
             <mat-label>Edad</mat-label>
             <input 
             type="number"
             [ngModelOptions]="{standalone: true}"
-            [(ngModel)]=" user.age "
-            matInput placeholder="Edad">
+            [(ngModel)]="user.age"
+            matInput placeholder="Edad"
+            required>
         </mat-form-field>
        
-        <mat-form-field>
+        <mat-form-field class="field">
             <mat-label>DNI</mat-label>
             <input 
             type="text"
             [ngModelOptions]="{standalone: true}"
             [(ngModel)]=" user.dni "
-            matInput placeholder="DNI">
+            matInput placeholder="DNI"
+            required>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="field"> 
             <mat-label>Fecha de nacimiento</mat-label>
             <input 
             type="date"
             [ngModelOptions]="{standalone: true}"
             [(ngModel)]=" user.birthday "
-            matInput placeholder="dd/mm/aaaa">
+            matInput placeholder="Fecha de nacimiento"
+            required>
         </mat-form-field>
     
-        <mat-form-field>
-            <mat-label>Color</mat-label>
+        <mat-form-field class="field">
+            <mat-label>Color favorito</mat-label>
             <input 
             type="text"
             [ngModelOptions]="{standalone: true}"
@@ -68,19 +81,56 @@
             required>
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="field">
             <mat-label>Género</mat-label>
-            <input 
+           
+            <mat-select 
             [ngModelOptions]="{standalone: true}"
             [(ngModel)]="user.gender "
-            matInput placeholder="Género">
+            matInput placeholder="Género" 
+            required>
+                <mat-option value="Mujer">Mujer</mat-option>
+                <mat-option value="Hombre">Hombre</mat-option>
+                <mat-option value="Otro">Otro</mat-option>
+                <mat-option value="No especificado">No especificado</mat-option>
+            </mat-select>
         </mat-form-field>
          <button mat-flat-button color="primary" type="submit">Registrar</button>
     </form>
 </mat-card>
 
 
+
+
 <mat-card class="card">
+    <mat-toolbar color="basic">
+        <h2>Lista de usuarios</h2>
+    </mat-toolbar>
+
+    <mat-list>
+        <mat-list-item *ngFor="let user of usersList; let i = index " class="user-list">
+            <p class="text"><strong>{{ i + 1 }}</strong></p>
+            <h3 class="text">{{ user.name }} {{ user.surname }}</h3>
+            <p class="text">{{ user.age }}</p>
+            <p class="text">{{ user.dni }}</p>
+            <p class="text">{{ user.birthday }}</p>
+            <p class="text">{{ user.color }}</p>
+            <p class="text">{{ user.gender }}</p> 
+
+            <div class="button__container">
+                <button mat-stroked-button color="primary" (click)="edit( i )">Actualizar</button>
+                <button mat-stroked-button color="accent" (click)="delete( i )">Eliminar</button>
+            </div>
+        </mat-list-item>
+        
+    </mat-list>
+
+</mat-card>
+
+
+
+
+<!-- <mat-card class="card">
     <h2>Lista de usuarios</h2>
     <ul>
         <li *ngFor=" let user of usersList; let i = index ">
@@ -93,8 +143,8 @@
             {{ user.color }}
             {{ user.gender }}
 
-            <button (click)="edit( i )">Actualizar</button>
-            <button (click)="delete( i )">Eliminar</button>
+            <button mat-stroked-button color="primary" (click)="edit( i )">Actualizar</button>
+            <button mat-stroked-button color="accent" (click)="delete( i )">Eliminar</button>
         </li>
     </ul>
-</mat-card>
+</mat-card> -->

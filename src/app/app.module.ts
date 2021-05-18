@@ -11,6 +11,7 @@ import { FormsModule } from "@angular/forms";
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
 
+
 @NgModule({
   declarations: [
     AppComponent,

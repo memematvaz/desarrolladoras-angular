@@ -1,9 +1,9 @@
 export interface User{
     name: string,
     surname: string, 
-    age: number, 
+    age: any, 
     dni: string,
-    birthday: string, 
+    birthday: any, 
     color: string,
     gender: string,
   }

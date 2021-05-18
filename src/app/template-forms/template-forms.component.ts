@@ -9,24 +9,15 @@ import { User } from './../user'
 })
 
 export class TemplateFormsComponent implements OnInit {
-  usersList : Array<User>= [
-    {
-      name: 'Paco',
-      surname: 'Fernández', 
-      age: 32, 
-      dni: '32115476V',
-      birthday: '30/04/1989', 
-      color: 'verde',
-      gender: 'hombre',
-    }
-  ]
+  panelOpenState = false;
+  usersList : Array<User>= []
 
   user : User = {
     name: '',
     surname: '', 
-    age: 0, 
+    age: '', 
     dni: '',
-    birthday: 'dd/mm/aaaa', 
+    birthday: '', 
     color: '',
     gender: ''
   }
@@ -49,9 +40,9 @@ export class TemplateFormsComponent implements OnInit {
     this.user = {
       name: '',
       surname: '', 
-      age: 0, 
+      age: '', 
       dni: '',
-      birthday: 'dd/mm/aaaa', 
+      birthday: '', 
       color: '',
       gender: '',
     }

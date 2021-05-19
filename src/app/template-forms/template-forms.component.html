@@ -13,7 +13,7 @@
 </mat-card>
 
 <mat-card class="card">
-    <form (submit)="registerUser()" flex>
+    <form #myForm="ngForm" (ngSubmit)="registerUser(); myForm.reset"  flex>
         <mat-toolbar color="basic">
             <h2>Formulario del usuario</h2>
         </mat-toolbar>
@@ -26,11 +26,12 @@
             [(ngModel)]=" user.name "
             matInput placeholder="Nombre"
             minlength="3"
-            required>
-            <!-- <mat-error *ngIf="handleError('nombre', 'minlength')">
+            required
+            >
+            <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
                 Debe escribir al menos <strong>3 caracteres</strong>
-              </mat-error>
-              <mat-error *ngIf="handleError('nombre', 'required')">
+            </mat-error>
+              <!-- <mat-error *ngIf="name.errors.required">
                 Debe poner un <strong>nombre</strong>
               </mat-error> -->
           </mat-form-field>
@@ -40,10 +41,14 @@
             <input 
             type="text"
             [ngModelOptions]="{standalone: true}"
+            #surname="ngModel"
             [(ngModel)]=" user.surname "
             matInput placeholder="Apellido"
             minlength="3"
             required>
+            <mat-error *ngIf="surname.invalid && (surname.dirty || surname.touched)">
+                Debe escribir al menos <strong>3 caracteres</strong>
+            </mat-error>
         </mat-form-field>
        
         <mat-form-field class="field">
@@ -51,9 +56,15 @@
             <input 
             type="number"
             [ngModelOptions]="{standalone: true}"
+            #age="ngModel"
             [(ngModel)]="user.age"
             matInput placeholder="Edad"
+            min="0" 
+            max="125"
             required>
+            <mat-error *ngIf="age.invalid && (age.dirty || age.touched)">
+                La edad debe estar comprendida <strong>entre 0 y 125</strong>
+            </mat-error>
         </mat-form-field>
        
         <mat-form-field class="field">
@@ -61,9 +72,15 @@
             <input 
             type="text"
             [ngModelOptions]="{standalone: true}"
+            #dni="ngModel"
             [(ngModel)]=" user.dni "
             matInput placeholder="DNI"
+            minlength="9"
+            maxlength="9"
             required>
+            <mat-error *ngIf="dni.invalid && (dni.dirty || dni.touched)">
+                Debe escribir <strong>9 caracteres</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field class="field"> 
@@ -71,9 +88,13 @@
             <input 
             type="date"
             [ngModelOptions]="{standalone: true}"
+            #birthday="ngModel"
             [(ngModel)]=" user.birthday "
             matInput placeholder="Fecha de nacimiento"
             required>
+            <mat-error *ngIf="color.invalid && (color.dirty || color.touched)">
+                Debe especificar una <strong>fecha de nacimiento</strong>
+            </mat-error>
         </mat-form-field>
     
         <mat-form-field class="field">
@@ -81,10 +102,14 @@
             <input 
             type="text"
             [ngModelOptions]="{standalone: true}"
+            #color="ngModel"
             [(ngModel)]="user.color "
             matInput placeholder="Color"
             minlength="3"
             required>
+            <mat-error *ngIf="color.invalid && (color.dirty || color.touched)">
+                Debe escribir al menos <strong>3 caracteres</strong>
+            </mat-error>
         </mat-form-field>
 
         <mat-form-field class="field">
@@ -92,6 +117,7 @@
            
             <mat-select 
             [ngModelOptions]="{standalone: true}"
+            #gender="ngModel"
             [(ngModel)]="user.gender "
             matInput placeholder="Género" 
             required>
@@ -100,12 +126,15 @@
                 <mat-option value="Otro">Otro</mat-option>
                 <mat-option value="No especificado">No especificado</mat-option>
             </mat-select>
+            <mat-error *ngIf="gender.invalid && (gender.dirty || gender.touched)">
+                Debe especificar <strong>un género</strong>
+            </mat-error>
         </mat-form-field>
-         <button mat-flat-button color="primary" type="submit">Registrar</button>
+         <button mat-flat-button color="primary" type="submit" [disabled]="name.invalid || surname.invalid || age.invalid || dni.invalid || birthday.invalid || color.invalid || gender.invalid">Registrar</button>
     </form>
 </mat-card>
 
-
+<!-- [disabled]="!myForm.invalid" -->
 
 
 <mat-card class="card">

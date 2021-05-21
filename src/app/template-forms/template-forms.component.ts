@@ -33,14 +33,11 @@ export class TemplateFormsComponent implements OnInit {
 
     if( this.action === 'insert'){
       this.usersList.push( this.user )
-      // this.myform.reset();
+      
     }else{
       this.usersList[this.position] = this.user
     }
 
-
-  
-   
     this.user = {
       name: '',
       surname: '', 

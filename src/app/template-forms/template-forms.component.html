@@ -11,9 +11,8 @@
         <p class="text">{{ user.gender }}</p> 
     </div>
 </mat-card>
-
 <mat-card class="card">
-    <form #myForm="ngForm" (ngSubmit)="registerUser(); myForm.reset"  flex>
+    <form #myForm="ngForm" (ngSubmit)="registerUser();"  flex>
         <mat-toolbar color="basic">
             <h2>Formulario del usuario</h2>
         </mat-toolbar>
@@ -31,11 +30,7 @@
             <mat-error *ngIf="name.invalid && (name.dirty || name.touched)">
                 Debe escribir al menos <strong>3 caracteres</strong>
             </mat-error>
-              <!-- <mat-error *ngIf="name.errors.required">
-                Debe poner un <strong>nombre</strong>
-              </mat-error> -->
-          </mat-form-field>
-
+        </mat-form-field>
         <mat-form-field class="field">
             <mat-label>Apellido</mat-label>
             <input 
@@ -50,7 +45,6 @@
                 Debe escribir al menos <strong>3 caracteres</strong>
             </mat-error>
         </mat-form-field>
-       
         <mat-form-field class="field">
             <mat-label>Edad</mat-label>
             <input 
@@ -66,7 +60,6 @@
                 La edad debe estar comprendida <strong>entre 0 y 125</strong>
             </mat-error>
         </mat-form-field>
-       
         <mat-form-field class="field">
             <mat-label>DNI</mat-label>
             <input 
@@ -75,14 +68,14 @@
             #dni="ngModel"
             [(ngModel)]=" user.dni "
             matInput placeholder="DNI"
+            pattern="[0-9]{8}[A-Za-z]{1}"
             minlength="9"
             maxlength="9"
             required>
             <mat-error *ngIf="dni.invalid && (dni.dirty || dni.touched)">
-                Debe escribir <strong>9 caracteres</strong>
+                Debe escribir <strong>8 números seguidos de una letra</strong>
             </mat-error>
         </mat-form-field>
-
         <mat-form-field class="field"> 
             <mat-label>Fecha de nacimiento</mat-label>
             <input 
@@ -96,7 +89,6 @@
                 Debe especificar una <strong>fecha de nacimiento</strong>
             </mat-error>
         </mat-form-field>
-    
         <mat-form-field class="field">
             <mat-label>Color favorito</mat-label>
             <input 
@@ -111,10 +103,8 @@
                 Debe escribir al menos <strong>3 caracteres</strong>
             </mat-error>
         </mat-form-field>
-
         <mat-form-field class="field">
             <mat-label>Género</mat-label>
-           
             <mat-select 
             [ngModelOptions]="{standalone: true}"
             #gender="ngModel"
@@ -133,15 +123,10 @@
          <button mat-flat-button color="primary" type="submit" [disabled]="name.invalid || surname.invalid || age.invalid || dni.invalid || birthday.invalid || color.invalid || gender.invalid">Registrar</button>
     </form>
 </mat-card>
-
-<!-- [disabled]="!myForm.invalid" -->
-
-
 <mat-card class="card">
     <mat-toolbar color="basic">
         <h2>Lista de usuarios</h2>
     </mat-toolbar>
-
     <mat-list>
         <mat-list-item *ngFor="let user of usersList; let i = index " class="user-list">
             <p class="text"><strong>{{ i + 1 }}</strong></p>
@@ -151,35 +136,11 @@
             <p class="text">{{ user.birthday }}</p>
             <p class="text">{{ user.color }}</p>
             <p class="text">{{ user.gender }}</p> 
-
             <div class="button__container">
                 <button mat-stroked-button color="primary" (click)="edit( i )">Actualizar</button>
                 <button mat-stroked-button color="accent" (click)="delete( i )">Eliminar</button>
             </div>
         </mat-list-item>
-        
     </mat-list>
-
 </mat-card>
 
-
-
-
-<!-- <mat-card class="card">
-    <h2>Lista de usuarios</h2>
-    <ul>
-        <li *ngFor=" let user of usersList; let i = index ">
-            <strong>{{ i + 1 }}</strong>
-            {{ user.name }}
-            {{ user.surname }}
-            {{ user.age }}
-            {{ user.dni }}
-            {{ user.birthday }}
-            {{ user.color }}
-            {{ user.gender }}
-
-            <button mat-stroked-button color="primary" (click)="edit( i )">Actualizar</button>
-            <button mat-stroked-button color="accent" (click)="delete( i )">Eliminar</button>
-        </li>
-    </ul>
-</mat-card> -->
